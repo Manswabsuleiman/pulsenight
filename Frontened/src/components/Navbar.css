@@ -1,0 +1,134 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000;
+  padding: 30px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  font-family: Arial, sans-serif;
+}
+
+/* Logo */
+.navbar-logo a {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Links */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar-links li a.active,
+.navbar-links li a:hover {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Sign In Button */
+.signin-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background-color: darkred;
+}
+
+/* Desktop Auth container hidden if needed */
+.auth-container {
+  display: none; /* We only want sign in inside mobile menu */
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #111;
+    padding: 80px 20px;
+    gap: 25px;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+
+  .navbar-links.active {
+    left: 0;
+  }
+
+  /* Make Sign In button full width inside mobile menu */
+  .navbar-links li.auth-item .signin-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Hide desktop auth container */
+  .auth-container {
+    display: none;
+  }
+}
+
