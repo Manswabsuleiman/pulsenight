@@ -8,10 +8,10 @@ const app = express();
 // ----------------------
 // CORS Configuration
 // ----------------------
-// Allow frontend domains (local + deployed)
+// Allow local dev and deployed frontend
 const allowedOrigins = [
-  "http://localhost:5173",                 // local dev frontend
-  //"https://pesapesa.onrender.com",        
+  "http://localhost:5173",            // local frontend
+  "https://pulsenight-1.onrender.com" // deployed frontend
 ];
 
 const corsOptions = {
@@ -38,8 +38,8 @@ const PESAPAL_CONSUMER_SECRET = "ckA8EE4abmKNsCgzhMY5QlOhoOI=";
 const BASE_URL = "https://pay.pesapal.com/v3/api";
 const IPN_ID = "3db0823c-0eb7-4a4e-b477-db1e72aa1bb1";
 
-// Use your live Render backend URL for callback
-const LIVE_CALLBACK_URL = "https://proarmy-tammara-thermogenic.ngrok-free.dev/api/pesapal/ipn";
+// Use your live backend URL for callback
+const LIVE_CALLBACK_URL = "https://pulsenight.onrender.com/api/pesapal/ipn";
 
 let accessToken = null;
 
@@ -99,7 +99,6 @@ app.post("/api/pesapal/order", async (req, res) => {
       });
     }
 
-    // Ensure access token exists
     if (!accessToken) await getAccessToken();
 
     const orderId = crypto.randomUUID();
@@ -107,7 +106,7 @@ app.post("/api/pesapal/order", async (req, res) => {
     const orderData = {
       id: orderId,
       currency: "KES",
-      amount: Number(parseFloat(amount).toFixed(2)), // ensures number format
+      amount: Number(parseFloat(amount).toFixed(2)),
       description: "Movie Ticket Payment",
       callback_url: LIVE_CALLBACK_URL,
       notification_id: IPN_ID,
