@@ -11,7 +11,7 @@ const app = express();
 // Allow local dev and deployed frontend
 const allowedOrigins = [
   "http://localhost:5173",            // local frontend
-  "https://pulsenight-1.onrender.com" // deployed frontend
+  "https://pulsenight-agg2.onrender.com" // deployed frontend
 ];
 
 const corsOptions = {
