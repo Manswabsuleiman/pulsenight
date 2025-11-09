@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Replace this with your current ngrok URL
-const BACKEND_URL = "https://proarmy-tammara-thermogenic.ngrok-free.dev";
+const BACKEND_URL = "https://pulsenight.onrender.com";
 
 const Payment = () => {
   const [email, setEmail] = useState("");
